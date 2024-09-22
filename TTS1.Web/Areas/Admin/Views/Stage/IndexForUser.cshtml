@@ -1,0 +1,51 @@
+﻿@model List<StageDto>
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>Aşama Yönetimi</h4>
+    <div class="card">
+
+        <div class="table-responsive text-nowrap m-3">
+            <a class="btn btn-success mb-3" asp-area="Admin" asp-controller="Stage" asp-action="Add">
+                Adım Ekle +
+            </a>
+
+
+            <table class="table table-bordered" id="stagesTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <td>Ürün</td>
+                        <td>Aşama</td>
+                        <td>Zaman Damgası</td>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                </tfoot>
+
+                <tbody class="table-border-bottom-0">
+                    @foreach (var stage in Model)
+                    {
+                        <tr name="@stage.Id">
+                            <td>@stage.Product.Name</td>
+                            <td>@stage.Parameter</td>
+                            <td>@stage.Timestamp</td>
+                            <td>
+                                <a class="btn btn-primary btn-sm" data-id="@stage.Id" asp-area="Admin" asp-controller="Stage" asp-action="Update" asp-route-stageId="@stage.Id"><i class="bx bxs-edit"></i></a>
+                                <a class="btn btn-danger btn-sm" data-id="@stage.Id" asp-area="Admin" asp-controller="Stage" asp-action="Delete" asp-route-stageId="@stage.Id"><i class="bx bx-minus-circle"></i></a>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/stageIndex.js" type="application/ecmascript"></script>
+}
+
+

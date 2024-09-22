@@ -1,0 +1,48 @@
+﻿@model CommentAddDto
+
+<div class="content-wrapper">
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Yorumlar /</span> Yorum Ekle</h4>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <form asp-controller="Comment" asp-action="Add" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly"></div>
+
+                        <div class="card-body">
+
+                            <div class="form-group">
+                                <label asp-for="ProductId">Ürün</label>
+                                <select id="fieldList" class="form-control" asp-for="ProductId" asp-items="@(new SelectList(Model.Products,"Id","Name"))"></select>
+                                <span asp-validation-for="ProductId" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="Title" id="defaultFormControlInput" class="form-label">Başlık</label>
+                                <input asp-for="Title" type="text" class="form-control mb-3" id="defaultFormControlInput" placeholder="Yorum başlığını giriniz."
+                                       aria-describedby="defaultFormControlHelp" />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Content" id="defaultFormControlInput" class="form-label">Yorum</label>
+                                <input asp-for="Content" type="text" class="form-control mb-3" id="defaultFormControlInput" placeholder="Yorumunuzu Giriniz"
+                                       aria-describedby="defaultFormControlHelp" />
+                                <span asp-validation-for="Content" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block">Kaydet</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

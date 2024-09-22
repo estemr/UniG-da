@@ -1,0 +1,69 @@
+﻿@model List<PackageDto>
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>Tarla Yönetimi</h4>
+    <div class="card">
+
+        <div class="table-responsive text-nowrap m-3">
+
+            @{
+                if (User.IsInRole($"{RoleConsts.Superadmin}"))
+                {
+                    <a class="btn btn-success mb-3" asp-area="Admin" asp-controller="Package" asp-action="Add">
+                        Paket Türü Ekle +
+                    </a>
+                }
+            }
+
+
+            <table class="table table-bordered" id="fieldsTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <td>Numarası</td>
+                        <td>Türü</td>
+                        @{
+                            if (User.IsInRole($"{RoleConsts.Superadmin}"))
+                            {
+                                <th>İşlemler</th>
+                            }
+                        }
+
+
+
+                    </tr>
+                </thead>
+                <tfoot>
+                </tfoot>
+
+                <tbody class="table-border-bottom-0">
+                    @foreach (var package in Model)
+                    {
+                        <tr name="@package.Id">
+                            <td>@package.Number</td>
+                            <td>@package.Type</td>
+
+                            @{
+                                if (User.IsInRole($"{RoleConsts.Superadmin}"))
+                                {
+                                    <td>
+                                        <a class="btn btn-primary btn-sm" data-id="@package.Id" asp-area="Admin" asp-controller="Package" asp-action="Update" asp-route-packageId="@package.Id"><i class="bx bxs-edit"></i></a>
+                                        <a class="btn btn-danger btn-sm" data-id="@package.Id" asp-area="Admin" asp-controller="Package" asp-action="Delete" asp-route-packageId="@package.Id"><i class="bx bx-minus-circle"></i></a>
+                                    </td>
+                                }
+                            }
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/fieldIndex.js" type="application/ecmascript"></script>
+}
+
+

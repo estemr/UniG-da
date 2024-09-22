@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "IndexByProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<StageDto>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Ürün</th>
+            <th>İşlem İsmi</th>
+            <th>İşlem Parametresi</th>
+            <th>Zaman Damgası</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var stage in Model)
+
+        {
+            <tr name="@stage.Id">
+                <td>@stage.Product.Name</td>
+                <td>@stage.Name</td>
+                <td>@stage.Parameter</td>
+                <td>@stage.Timestamp</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

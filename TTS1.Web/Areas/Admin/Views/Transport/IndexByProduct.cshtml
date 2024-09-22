@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "IndexByProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model List<TransportDto>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Ürün</th>
+            <th>Yetiştirilen Tarla</th>
+            <th>İşlenen Tesis</th>
+            <th>Paketlenme Türü</th>
+            <th>Taşınma Zamanı</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var transport in Model)
+        {
+            <tr name="@transport.Id">
+                <td>@transport.Product.Name</td>
+                <td>@transport.Field.Name</td>
+                <td>@transport.Facility.Name</td>
+                <td>@transport.Package.Type</td>
+                <td>@transport.Timestamp.ToLongDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

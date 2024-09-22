@@ -1,0 +1,61 @@
+﻿@model List<FieldDto>
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Çöp Kutusu /</span>Tarla Yönetimi</h4>
+    <div class="card">
+
+        <div class="table-responsive text-nowrap m-3">
+            <table class="table table-bordered" id="fieldsTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <td>İsmi</td>
+                        <td>Lokasyonu</td>
+                        <td>Dönümü</td>
+                        <td>Toprak Tipi</td>
+                        <td>Sahibi(Tarla Kaydını Oluşturan)</td>
+                        @{
+                            if (User.IsInRole($"{RoleConsts.Superadmin}"))
+                            {
+                                <td>İşlemler</td>
+                            }
+                        }
+
+
+                    </tr>
+                </thead>
+                <tfoot>
+                </tfoot>
+
+                <tbody class="table-border-bottom-0">
+                    @foreach (var field in Model)
+                    {
+                        <tr name="@field.Id">
+                            <td>@field.Name</td>
+                            <td>@field.Location</td>
+                            <td>@field.Size</td>
+                            <td>@field.SoilType</td>
+                            <td>@field.CreatedBy</td>
+                            <td>
+                                @{
+                                    if (User.IsInRole($"{RoleConsts.Superadmin}"))
+                                    {
+                                        <a class="btn btn-primary btn-sm" data-id="@field.Id" asp-area="Admin" asp-controller="Field" asp-action="UndoDelete" asp-route-fieldId="@field.Id"><i class="bx bx-undo"></i></a>
+                                    }
+                                }
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/fieldIndex.js type="application/ecmascript"></script>
+}
+
+

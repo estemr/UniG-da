@@ -1,0 +1,68 @@
+﻿@model List<TransportDto>
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>Lojistik Yönetimi</h4>
+    <div class="card">
+
+        <div class="table-responsive text-nowrap m-3">
+
+
+            <table class="table table-bordered" id="logisticsTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <td>Ürün</td>
+                        <td>Taşıma Adı (Temsili)</td>
+                        <td>Sürücüsü</td>
+                        <td>Aracı</td>
+                        <td>Hangi Tarladan</td>
+                        <td>Hangi tesise</td>
+                        <td>Ne Zaman Taşınacak</td>
+                        <td>Paket Türü</td>
+                        @{
+                            if (!User.IsInRole($"{RoleConsts.User}"))
+                            {
+                                <th>İşlemler</th>
+                            }
+                        }
+                    </tr>
+                </thead>
+                <tfoot>
+                </tfoot>
+
+                <tbody class="table-border-bottom-0">
+                    @foreach (var transport in Model)
+                    {
+                        <tr name="@transport.Id">
+                            <td>@transport.Product.Name</td>
+                            <td>@transport.Name</td>
+                            <td>@transport.Vehicle.DriverName</td>
+                            <td>@transport.Vehicle.Model</td>
+                            <td>@transport.Field.Name</td>
+                            <td>@transport.Facility.Name, @transport.Facility.Location</td>
+                            <td>@transport.Timestamp.ToLongDateString()</td>
+                            <td>@transport.Package.Type</td>
+
+                            if (!User.IsInRole($"{RoleConsts.User}"))
+                            {
+                            <td>
+                                <a class="btn btn-primary btn-sm" data-id="@transport.Id" asp-area="Admin" asp-controller="Transport" asp-action="UndoDelete" asp-route-transportId="@transport.Id"><i class='bx bx-undo'></i></a>
+                            </td>
+                            }
+                            }
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/logisticsIndex.js" type="application/ecmascript"></script>
+}
+
+
+

@@ -1,0 +1,184 @@
+﻿@* @using TTS.Entity.DTOs.Market.Products
+@model List<ProductDto>
+<section class="slider_section ">
+    <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container ">
+                    <div class="row">
+                        <style>
+                            .center {
+                                height: 300px;
+                                width: 300px;
+                                display: block;
+                                margin-left: auto;
+                                margin-right: auto;
+                                margin-top: 100px;
+                            }
+                        </style>
+                        <div class="col-md-6">
+                            <div class="center">
+                                
+                                <img src="~/sneat/assets/img/favicon/ttsLogo.png" class="center">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="detail-box">
+                                <h1 style="color:darkgreen; margin-top:200px">
+                                    ÜNİ GIDA
+                                </h1>
+
+
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Ürün</th>
+                                            <th>Fiyatı</th>
+                                            <th>Birimi</th>
+                                            <th>Taşıma Adımları</th>
+                                            <th>İşlem Adımları</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var product in Model)
+
+                                        {
+                                            <tr name="@product.Id">
+                                                <td>@product.Name</td>
+                                                <td>@product.Price</td>
+                                                <td>@product.Unit</td>
+                                                <td>
+                                                    <a class="btn btn-warning btn-sm" data-id="@product.Id" asp-area="Admin" asp-controller="Transport" asp-action="IndexByProduct" asp-route-productId="@product.Id"><i class="menu-icon bx bxs-truck"></i>Taşıma Adımları</a>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-warning btn-sm" data-id="@product.Id" asp-area="Admin" asp-controller="Stage" asp-action="IndexByProduct" asp-route-productId="@product.Id"><i class="menu-icon bx bx-stats"></i>İşlem Adımları</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section> *@
+
+
+@using TTS.Entity.DTOs.Market.Products
+@model List<ProductDto>
+<section class="slider_section" style="background-color: #f5f5f5;">
+    <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container">
+                    <div class="row">
+                        <style>
+                            .center {
+                                height: 300px;
+                                width: 300px;
+                                display: block;
+                                margin: 100px auto 50px auto;
+                            }
+
+                            .detail-box h1 {
+                                font-size: 50px;
+                                color: #2e7d32;
+                                margin-top: 100px;
+                                font-weight: bold;
+                                text-align: center;
+                            }
+
+                            .table {
+                                margin-top: 30px;
+                                background-color: white;
+                                border-radius: 10px;
+                                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                            }
+
+                            .table th, .table td {
+                                text-align: center;
+                                vertical-align: middle;
+                            }
+
+                            .table tbody tr:hover {
+                                background-color: #f1f1f1;
+                                transition: background-color 0.3s ease;
+                            }
+
+                            .btn {
+                                padding: 8px 15px;
+                                border-radius: 5px;
+                                transition: all 0.3s ease;
+                            }
+
+                            .btn-warning {
+                                background-color: #ff9800;
+                                color: white;
+                                border: none;
+                            }
+
+                            .btn-warning:hover {
+                                background-color: #e68a00;
+                                transform: translateY(-2px);
+                            }
+
+                            .menu-icon {
+                                margin-right: 5px;
+                            }
+                        </style>
+
+                       @*  <div class="col-md-6">
+                            <div class="center">
+                                <img src="~/sneat/assets/img/favicon/ttsLogo.png" alt="Logo" class="center">
+                            </div>
+                        </div> *@
+
+                        <div class="col-md-12" style="">
+                            <div class="detail-box">
+                                <h1 style="color:#7B68EE">ÜNİ GIDA</h1>
+
+                                <table class="table table-bordered">
+                                    <thead style="background-color: #7B68EE	; color: white;">
+                                        <tr>
+                                            <th style="color:white">Ürün</th>
+                                            <th style="color:white">Fiyatı</th>
+                                            <th style="color:white">Birimi</th>
+                                            <th style="color:white">Satıcı</th>
+                                            <th style="color:white">Taşıma Adımları</th>
+                                            <th style="color:white">İşlem Adımları</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var product in Model)
+                                        {
+                                                <tr name="@product.Id">
+                                                    <td>@product.Name</td>
+                                                    <td>@product.Price</td>
+                                                    <td>@product.Unit</td>
+                                                    <td>@product.CreatedBy</td>
+                                                    <td>
+                                                        <a class="btn btn-warning btn-sm" data-id="@product.Id" asp-area="Admin" asp-controller="Transport" asp-action="IndexByProduct" asp-route-productId="@product.Id">
+                                                            <i class="menu-icon bx bxs-truck"></i>Taşıma Adımları
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-warning btn-sm" data-id="@product.Id" asp-area="Admin" asp-controller="Stage" asp-action="IndexByProduct" asp-route-productId="@product.Id">
+                                                            <i class="menu-icon bx bx-stats"></i>İşlem Adımları
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

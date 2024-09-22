@@ -1,0 +1,58 @@
+﻿@model List<CommentDto>
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>Yorum Yönetimi</h4>
+    <div class="card">
+
+        <div class="table-responsive text-nowrap m-3">
+
+
+            <a class="btn btn-success mb-3" asp-area="Admin" asp-controller="Comment" asp-action="Add">
+                Yorum Ekle +
+            </a>
+
+
+            <table class="table table-bordered" id="fieldsTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <td>Başlık</td>
+                        <td>İçerik</td>
+                        <td>Yorum Yapan</td>
+                        <th>İşlemler</th>
+
+
+                    </tr>
+                </thead>
+                <tfoot>
+                </tfoot>
+
+                <tbody class="table-border-bottom-0">
+                    @foreach (var comment in Model)
+                    {
+                        <tr name="@comment.Id">
+                            <td>@comment.Title</td>
+                            <td>@comment.Content</td>
+                            <td>@comment.CreatedBy</td>
+
+                            <td>
+                                <a class="btn btn-primary btn-sm" data-id="@comment.Id" asp-area="Admin" asp-controller="Comment" asp-action="Update" asp-route-commentId="@comment.Id"><i class="bx bxs-edit"></i></a>
+                                <a class="btn btn-danger btn-sm" data-id="@comment.Id" asp-area="Admin" asp-controller="Comment" asp-action="Delete" asp-route-commentId="@comment.Id"><i class="bx bx-minus-circle"></i></a>
+                            </td>
+
+
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/fieldIndex.js" type="application/ecmascript"></script>
+}
+
+

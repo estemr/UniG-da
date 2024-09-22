@@ -1,0 +1,23 @@
+﻿@model List<CommentDto>
+<a style="margin:10px;" class="btn btn-success mb-3" asp-area="Admin" asp-controller="Comment" asp-action="Add">
+    Yorum Ekle +
+</a>
+<table class="table table-bordered">
+    <thead style="background-color: #7B68EE	; color: white;">
+        <tr>
+            <th style="color:white">Yorum Sahibi</th>
+            <th style="color:white">Başlık</th>
+            <th style="color:white">Yorum</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var comment in Model)
+        {
+            <tr name="@comment.Id">
+                <td>@comment.CreatedBy</td>
+                <td>@comment.Title</td>
+                <td>@comment.Content</td>
+            </tr>
+        }
+    </tbody>
+</table>

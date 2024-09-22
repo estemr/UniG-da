@@ -1,0 +1,56 @@
+﻿@model FieldUpdateDto
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+    <h4 class="fw-bold py-3 mb-4">
+        <span class="text-muted fw-light">Tarla Yönetimi /</span> Tarla Düzenle
+    </h4>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <h5 class="card-header"></h5>
+                <form asp-controller="Field" asp-action="Update" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <div class="card-body">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="form-group">
+                            <label asp-for="Name" id="defaultFormControlInput" class="form-label">Tarla İsmi</label>
+                            <input asp-for="Name" type="text" class="form-control mb-3" id="defaultFormControlInput" placeholder="Tarla İsmini Giriniz." aria-describedby="defaultFormControlHelp">
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Location" id="defaultFormControlInput" class="form-label">Tarla Lokasyonu</label>
+                            <input asp-for="Location" type="text" class="form-control mb-3" id="defaultFormControlInput" placeholder="Tarla Lokasyonunu Giriniz." aria-describedby="defaultFormControlHelp">
+                            <span asp-validation-for="Location" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Size" id="defaultFormControlInput" class="form-label">Tarla Boyutu</label>
+                            <input asp-for="Size" type="text" class="form-control mb-3" id="defaultFormControlInput" placeholder="Tarla Boyutunu (Dönüm) Giriniz." aria-describedby="defaultFormControlHelp">
+                            <span asp-validation-for="Size" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="SoilType" id="defaultFormControlInput" class="form-label">Tarla Toprak Türü</label>
+                            <input asp-for="SoilType" type="text" class="form-control mb-3" id="defaultFormControlInput" placeholder="Tarla Toprak Türünü Giriniz." aria-describedby="defaultFormControlHelp">
+                            <span asp-validation-for="SoilType" class="text-danger"></span>
+                        </div>
+
+                        
+
+                        
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Kaydet</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</div>

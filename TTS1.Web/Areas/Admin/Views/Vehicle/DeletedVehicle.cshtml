@@ -1,0 +1,57 @@
+﻿@model List<VehicleDto>
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>Araç Yönetimi</h4>
+    <div class="card">
+
+        <div class="table-responsive text-nowrap m-3">
+
+            <table class="table table-bordered" id="vehiclesTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <td>Plakası</td>
+                        <td>Modeli</td>
+                        <td>Sürücü İsmi</td>
+                        @{
+                            if (!User.IsInRole($"{RoleConsts.User}"))
+                            {
+                                <th>İşlemler</th>
+                            }
+                        }
+                    </tr>
+                </thead>
+                <tfoot>
+                </tfoot>
+
+                <tbody class="table-border-bottom-0">
+                    @foreach (var vehicle in Model)
+                    {
+                        <tr name="@vehicle.Id">
+                            <td>@vehicle.Plate</td>
+                            <td>@vehicle.Model</td>
+                            <td>@vehicle.DriverName</td>
+                            @{
+                                if (!User.IsInRole($"{RoleConsts.User}"))
+                                {
+                                    <td>
+                                        <a class="btn btn-primary btn-sm" data-id="@vehicle.Id" asp-area="Admin" asp-controller="Vehicle" asp-action="UndoDelete" asp-route-vehicleId="@vehicle.Id"><i class='bx bx-undo'></i></a>
+                                    </td>
+                                }
+                            }
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/vehicleIndex.js" type="application/ecmascript"></script>
+}
+
+
+

@@ -1,0 +1,49 @@
+﻿@model UserProfileDto
+
+<li class="nav-item navbar-dropdown dropdown-user dropdown">
+    <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+        <i class='bx bxs-user'></i> Hesabım <i class='bx bxs-chevron-down'></i>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end">
+        <li>
+            <a class="dropdown-item">
+                <div class="d-flex">
+                    <div class="flex-shrink-0 me-3">
+                    </div>
+                    <div class="flex-grow-1">
+                        <span class="fw-semibold d-block">@Model.FirstName @Model.LastName</span>
+                        <small class="text-muted">@Model.Role</small>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <div class="dropdown-divider"></div>
+        </li>
+        <li>
+            <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Profile">
+                <i class="bx bx-user me-2"></i>
+                <span class="align-middle">Profilim</span>
+            </a>
+        </li>
+
+        <li>
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="dropdown-item">
+                <span class="d-flex align-items-center align-middle">
+                    <i class='bx bx-world me-2'></i>
+                    <span class="flex-grow-1 align-middle">Siteye Dön</span>
+                </span>
+            </a>
+        </li>
+
+        <li>
+            <div class="dropdown-divider"></div>
+        </li>
+        <li>
+            <a class="dropdown-item" asp-action="Logout" asp-area="Admin" asp-controller="Auth">
+                <i class="bx bx-power-off me-2"></i>
+                <span class="align-middle">Çıkış Yap</span>
+            </a>
+        </li>
+    </ul>
+</li>
